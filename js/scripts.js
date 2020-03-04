@@ -7,6 +7,10 @@ function computerPlay() {
     return compChoice[getComputerNum()]
 }
 
+function getPlayerSelect() {
+    return prompt("Rock/Paper/Scissors?")
+}
+
 function playGame(playerSelection, computerSelection) {
     switch (playerSelection.toLowerCase()) {
         case "rock":
@@ -42,4 +46,14 @@ function playGame(playerSelection, computerSelection) {
     }
 }
 
-console.log(playGame(computerPlay(),computerPlay()))
+function game() {
+    let playerRecord = 0;
+    for( let i = 0; i < 5; i++){
+        if(playGame(getPlayerSelect(),computerPlay()) ==="You Win!"){
+            playerRecord++;
+        }
+    console.log("You have won " + playerRecord + " times!");
+    }
+}
+
+game()
