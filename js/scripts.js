@@ -7,12 +7,22 @@ function computerPlay() {
     return compChoice[getComputerNum()]
 }
 
-function getPlayerSelect() {
-    return prompt("Rock/Paper/Scissors?")
+function displayEnemy(computerSelection) {
+	const enemyRecord = document.getElementById("enemy");
+	enemyRecord.textContent= `Your enemy played ${computerSelection}!`;
 }
 
+
+function userSelectInput(return_id) {
+	return(return_id.id)
+}
+
+
 function playGame(playerSelection, computerSelection) {
-    switch (playerSelection.toLowerCase()) {
+	displayEnemy(computerSelection);
+	console.log(playerSelection);
+	console.log(computerSelection);
+    switch (playerSelection) {
         case "rock":
             if(computerSelection.toLowerCase() === "paper") {
                 return "You Lose!"
@@ -46,14 +56,41 @@ function playGame(playerSelection, computerSelection) {
     }
 }
 
-function game() {
-    let playerRecord = 0;
-    for( let i = 0; i < 5; i++){
-        if(playGame(getPlayerSelect(),computerPlay()) ==="You Win!"){
-            playerRecord++;
-        }
-    console.log("You have won " + playerRecord + " times!");
-    }
+function displayRecord(record) {
+	const divRecord = document.getElementById("result");
+	divRecord.textContent= `You have won ${record} times!`;
 }
 
+
+function game() {
+        let playerRecord = 0;
+	const buttons = document.querySelectorAll('button');
+	buttons.forEach((button) => {
+		button.addEventListener("click", () => {
+			if(playGame(userSelectInput(button),computerPlay()) ==="You Win!"){
+				playerRecord++;
+        	};
+    	displayRecord(playerRecord);
+})
+})
+}
 game()
+// TODO 
+// 1)Implement best out of 5
+// 2)When a winner is determined change the screen to get rid of the buttons and display the winner and loser 
+// message
+// 3)Style everything
+// 4) Running score throughout the game
+
+//function game() {
+//    let playerRecord = 0;
+//    for( let i = 0; i < 5; i++){
+//        if(playGame(getPlayerSelect(),computerPlay()) ==="You Win!"){
+//            playerRecord++;
+//        }
+//    console.log("You have won " + playerRecord + " times!");
+//    }
+//}
+//game())
+//
+
